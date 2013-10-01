@@ -9,6 +9,7 @@
     <tal:main-macro metal:define-macro="main">
 
         <metal:bibliography-entry-view metal:define-macro="bibliography_entry_view" tal:define="mtool context/portal_membership;">
+          <div class="cmfbib_entry" tal:attributes="id here/UID">
              <p><span tal:content="structure python:here.Authors(format='%F %m %L',withURL=1, context=here, methodname='getAuthorURL')">
                 Authors</span>
                 <span tal:condition="python: hasattr(here, 'getEditor_flag') and here.getEditor_flag()" i18n:translate="editor_abbreviated">(ed.)</span>
@@ -90,6 +91,7 @@
     
             <metal:bibliography-entry-coins metal:use-macro="here/bibliography_entry_macros/macros/bibliography_entry_coins" />
 
+          </div> <!-- end entry wrapper div -->
         </metal:bibliography-entry-view>
 
         <metal:bibliography-entry-camefrom metal:define-macro="bibliography_entry_camefrom">

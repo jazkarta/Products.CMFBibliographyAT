@@ -10,3 +10,4 @@ parts/
 .pydevproject
 .tmp*
 dist
+*.mo

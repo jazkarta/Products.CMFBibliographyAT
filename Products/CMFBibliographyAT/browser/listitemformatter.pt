@@ -1,10 +1,11 @@
-<p class="body">
+<tal:listitem tal:define="item_uid view/item/UID">
+<p class="body cmfbib_entry" tal:attributes="id item_uid">
   <span tal:replace="structure view/item/Authors" >Authors</span>
     (<span tal:replace="view/item/publication_year">1900</span>).<br />
 
   <a href="/view" 
      tal:attributes="href view/item/getURL; 
-                     UID view/item/UID" 
+                     UID item_uid" 
      class="bibliography-item" >
     <b class=""
        tal:attributes="class python: 'state-%s' % view.item['review_state'];"
@@ -17,4 +18,4 @@
     No source specified</span>
 
 </p>
-
+</tal:listitem>

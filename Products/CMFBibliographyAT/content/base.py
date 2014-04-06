@@ -652,7 +652,7 @@ class BaseEntry(BaseContent):
     def validate_identifiers(self, data={}):
         """ Identifier verification: types can only be used once """
 
-        if data['label'] == 'ISBN':
+        if 'label' in data and data['label'] == 'ISBN':
             isbn = data.get('value')
             if not isbn:
                 return

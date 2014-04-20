@@ -42,7 +42,7 @@ class BiliographicExportAdapter(object):
         # identifiers
         identifiers = dict()
         for d in self.context.getIdentifiers():
-            if d.get('value'):
+            if 'label' in d and d.get('value'):
                 identifiers[d['label']] = d['value']
         self.identifiers = identifiers
 

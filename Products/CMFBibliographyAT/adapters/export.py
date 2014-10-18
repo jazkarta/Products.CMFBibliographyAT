@@ -31,12 +31,12 @@ class BiliographicExportAdapter(object):
 
         self.__name__ = self.context.getId()
         self.title = _decode(self.context.Title())
-        self.publication_year = self.context.publication_year
+        self.publication_year = getattr(self.context, 'publication_year', None)
         self.publication_month = self.context.getPublication_month()
         self.abstract = _decode(self.context.getAbstract())
         self.subject = _decode(self.context.getKeywords())
         self.note = _decode(self.context.getNote())
-        self.annote = _decode(self.context.annote)
+        self.annote = _decode(getattr(self.context, 'annote', None))
         self.url = self.context.aq_base.getURL()
 
         # identifiers

@@ -23,11 +23,15 @@ from Products.ATContentTypes.content.schemata \
      import ATContentTypeSchema as BaseSchema
 
 try:
-    from archetypes.referencebrowserwidget.widget import ReferenceBrowserWidget
+    from Products.Archetypes.Widget import RelatedItemsWidget as ReferenceBrowserWidget
 except ImportError:
-    from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import ReferenceBrowserWidget
+    try:
+        from archetypes.referencebrowserwidget.widget import ReferenceBrowserWidget
+    except ImportError:
+        from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import ReferenceBrowserWidget
 
 from Products.CMFBibliographyAT.marshall import BibtexMarshaller
+from Products.CMFBibliographyAT.config import REFERENCE_TYPES
 from Products.ATExtensions.ateapi import FormattableNamesField
 from Products.ATExtensions.ateapi import FormattableNamesWidget
 from Products.ATExtensions.ateapi import CommentField, CommentWidget
@@ -188,6 +192,12 @@ CoreSchema = Schema((
                         i18n_domain = "cmfbibliographyat",
                         visible={'edit': 'visible', 'view': 'invisible',},
                         condition="python: object.portal_membership.checkPermission('ManagePortal', object)",
+                        pattern_options={
+                            'basePath': '',
+                            "contextPath": None,
+                            'selectableTypes': ['PDF File',],
+                            'placeholder': _(u'Begin typing a name'),
+                        },
                     ),
     ),
     FileField('uploaded_pdfFile',

@@ -8,7 +8,8 @@
     <metal:define define-macro="edit"> 
       <metal:use use-macro="here/widgets/field/macros/edit">
        <tal:block metal:fill-slot="widget_body">
-       <fieldset tal:define="values python:field.getEditAccessor(here)();
+			 <fieldset style="display: block"
+			           tal:define="values python:field.getEditAccessor(here)();
                              session_values python:here.session_restore_value(fieldName, values);
                              cached_values python:request.get(fieldName,session_values);
                              values python:cached_values or values;
@@ -93,15 +94,15 @@
   </tal:keys>
 	<td>
              <img src=""
-                  tal:attributes="src string:${portal_url}/arrowUp.gif"
+                  tal:attributes="src string:${portal_url}/arrowUp.png"
                   alt="Move up"
                   onclick="moveRowUp(this);return false"/>
               <img src=""
-                   tal:attributes="src string:${portal_url}/arrowDown.gif"
+                   tal:attributes="src string:${portal_url}/arrowDown.png"
                    alt="Move down"
                    onclick="moveRowDown(this);return false"/>
              <img src=""
-                  tal:attributes="src string:${portal_url}/delete_icon.gif"
+                  tal:attributes="src string:${portal_url}/delete_icon.png"
                   alt="Delete row"
                   onclick="removeFieldRow(this);return false" />
 

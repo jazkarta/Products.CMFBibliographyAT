@@ -63,6 +63,10 @@ if CMFBAT_USES_LINGUAPLONE:
 else:
     from Products.Archetypes.public import *
 
+try:
+    from Products.Archetypes.public import TinyMCEWidget as RichWidget
+except ImportError:
+    pass
 
 BibFolderIdCookingSchema = Schema((
     BooleanField('cookIdsOnBibRefCreation',

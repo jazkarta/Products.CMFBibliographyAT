@@ -6,7 +6,8 @@ if CMFBAT_USES_LINGUAPLONE:
     from Products.LinguaPlone.public import ReferenceWidget
     from Products.LinguaPlone.public import TextAreaWidget
     from Products.LinguaPlone.public import FileWidget
-    from Products.LinguaPlone.public import RichWidget, StringWidget
+    from Products.LinguaPlone.public import RichWidget
+    from Products.LinguaPlone.public import StringWidget
     from Products.LinguaPlone.public import KeywordWidget
 else:
     from Products.Archetypes.public import Schema
@@ -15,8 +16,13 @@ else:
     from Products.Archetypes.public import ReferenceWidget
     from Products.Archetypes.public import TextAreaWidget
     from Products.Archetypes.public import FileWidget
-    from Products.Archetypes.public import RichWidget, StringWidget
+    from Products.Archetypes.public import RichWidget
+    from Products.Archetypes.public import StringWidget
     from Products.Archetypes.public import KeywordWidget
+    try:
+        from Products.Archetypes.public import TinyMCEWidget as RichWidget
+    except ImportError:
+        pass
 
 from Products.Archetypes import PloneMessageFactory as _
 from Products.ATContentTypes.content.schemata \

@@ -116,7 +116,11 @@ class BaseEntry(BaseContent):
         if not self.Schema()['abstract'].get(self, **kw) and self.Description(**kw):
             return self.Description(**kw)
 
-        return self.Schema()['abstract'].get(self, **kw)
+        # In Plone 5, we sometime get BaseUnit instead of string, we use call to get value.
+        abstract = self.Schema()['abstract'].get(self, **kw)
+        if callable(abstract):
+            abstract = abstract()
+        return abstract
 
     security.declareProtected(View, 'editAbstract')
     def editAbstract(self, **kw):
